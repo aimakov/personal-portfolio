@@ -1,6 +1,6 @@
 import "@/styles/globals.css";
 import type { AppProps } from "next/app";
-import { Box, ChakraProvider, defaultSystem } from "@chakra-ui/react";
+import { Box, ChakraProvider } from "@chakra-ui/react";
 import localFont from "next/font/local";
 
 const satoshi = localFont({
@@ -10,7 +10,7 @@ const satoshi = localFont({
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
-    <ChakraProvider value={defaultSystem}>
+    <ChakraProvider>
       <Box className={satoshi.className}>
         <Component {...pageProps} />
       </Box>
