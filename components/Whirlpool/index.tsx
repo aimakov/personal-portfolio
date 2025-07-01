@@ -1,11 +1,9 @@
-import React, { useState, useEffect, useRef, useMemo } from "react";
-import { Image } from "@chakra-ui/react";
+import React, { useEffect, useRef } from "react";
+import { Flex } from "@chakra-ui/react";
 
-import { SoulStone, SpaceStone, PowerStone, TimeStone, RealityStone, MindStone } from "./base64Images";
-
-import { imageUrls, labels } from "./ParticlesInfo";
+import RotatingText from "@/components/RotatingText";
+import { imageUrls } from "./ParticlesInfo";
 import {
-  particlesColor,
   cellSize,
   curve,
   zoom,
@@ -20,9 +18,10 @@ import {
   islandsAngle,
   fontSize,
   islandsNumber,
-  stoneColors,
+  stoneColorsArray,
+  speedMultiplier,
+  speedOffset,
 } from "@/settings/constants";
-import { Flex } from "@chakra-ui/react";
 
 type Props = {};
 
@@ -48,7 +47,7 @@ class Particle {
     this.resetOnIslands();
 
     this.radius = Math.random() * 2 + 2;
-    this.speedModifier = Math.floor(Math.random() * 5 + 5);
+    this.speedModifier = Math.floor(Math.random() * speedMultiplier + speedOffset);
   }
 
   resetOnIslands() {
@@ -68,6 +67,7 @@ class Particle {
     this.x = x;
     this.y = y;
     this.color = this.effect.islandsInfo[index].color;
+    this.color = this.effect.islandsInfo[index].color[Math.floor(Math.random() * this.effect.islandsInfo[index].color.length)];
   }
 
   reset() {
@@ -85,8 +85,10 @@ class Particle {
 
   draw(context: any) {
     context.save();
+    // context.fillStyle = `rgb(${this.color[0] ?? 0}, ${this.color[1] ?? 0}, ${this.color[2] ?? 0})`;
+    // const color: any = this.color[Math.floor(Math.random() * this.color.length)];
     context.fillStyle = `rgb(${this.color[0] ?? 0}, ${this.color[1] ?? 0}, ${this.color[2] ?? 0})`;
-    context.beginPath();
+    context.fillStyle = context.beginPath();
     context.arc(this.x, this.y, this.radius, 0, 2 * Math.PI);
     context.fill();
     context.strokeStyle = "#000000";
@@ -142,24 +144,6 @@ class Effect {
   islandsAngle: number;
   islandsNumber: number;
 
-  opticsX: number;
-  opticsY: number;
-
-  electronicsX: number;
-  electronicsY: number;
-
-  aiX: number;
-  aiY: number;
-
-  engineeringX: number;
-  engineeringY: number;
-
-  biologyX: number;
-  biologyY: number;
-
-  anatomyX: number;
-  anatomyY: number;
-
   constructor(canvas: any, context: any) {
     this.canvas = canvas;
     this.context = context;
@@ -188,24 +172,6 @@ class Effect {
 
     this.islandsInfo = [];
 
-    this.opticsX = 0;
-    this.opticsY = 0;
-
-    this.electronicsX = 0;
-    this.electronicsY = 0;
-
-    this.aiX = 0;
-    this.aiY = 0;
-
-    this.engineeringX = 0;
-    this.engineeringY = 0;
-
-    this.biologyX = 0;
-    this.biologyY = 0;
-
-    this.anatomyX = 0;
-    this.anatomyY = 0;
-
     this.init();
 
     window.addEventListener("keydown", (e) => {
@@ -231,7 +197,7 @@ class Effect {
 
     this.islandPositionRadius = islandPositionRadius(this.width, this.height, this.islandRadius);
 
-    this.center = { x: this.center.x, y: this.center.y };
+    this.center = { x: this.width / 2, y: this.height / 2 };
     this.context.strokeStyle = "white";
     this.context.fillStyle = "white";
 
@@ -271,9 +237,10 @@ class Effect {
         x: this.center.x + this.islandPositionRadius * Math.cos(this.islandsAngle * (i + 1)),
         y: this.center.y + this.islandPositionRadius * Math.sin(this.islandsAngle * (i + 1)),
         radius: this.islandRadius,
-        color: particlesColor[i],
+        // color: particlesColor[i],
+        color: stoneColorsArray[i],
         image: imageUrls[i],
-        label: labels[i],
+        // label: labels[i],
         imageX: this.center.x + this.islandPositionRadius * Math.cos(this.islandsAngle * (i + 1)),
         imageY: this.center.y + this.islandPositionRadius * Math.sin(this.islandsAngle * (i + 1)),
       });
@@ -306,27 +273,22 @@ class Effect {
       // context.beginPath();
       // context.arc(island.x, island.y, island.radius * 0.9, 0, 2 * Math.PI);
       // context.fill();
-
       // let img = new Image();
-
       // img.src = island.image;
       // context.drawImage(img, island.imageX - island.radius, island.imageY - island.radius, island.radius * 2, island.radius * 2);
-
       // context.fillStyle = "rgba(0,0,0,0.3)";
       // context.beginPath();
       // context.arc(island.x, island.y, island.radius, 0, 2 * Math.PI);
       // context.fill();
       // context.fillStyle = `rgb(${island.color[0]},${island.color[1]},${island.color[2]})`;
       // context.fillStyle = `white`;
-
-      context.textAlign = "center";
-      const separateLines = island.label.split(" ");
-      const lineheight = Math.max(16, 0.013 * window.innerWidth);
-
-      for (var i = 0; i < separateLines.length; i++) {
-        context.fillText(separateLines[i], island.x, island.y + (i - (separateLines.length - 1) / 2) * lineheight);
-      }
-      context.restore();
+      // context.textAlign = "center";
+      // const separateLines = island.label.split(" ");
+      // const lineheight = Math.max(16, 0.013 * window.innerWidth);
+      // for (var i = 0; i < separateLines.length; i++) {
+      //   context.fillText(separateLines[i], island.x, island.y + (i - (separateLines.length - 1) / 2) * lineheight);
+      // }
+      // context.restore();
     });
 
     context.beginPath();
@@ -373,6 +335,7 @@ class Effect {
 
 const Page = (props: Props) => {
   const canvasRef = useRef(null);
+  const animationRef = useRef<number | null>(null);
 
   useEffect(() => {
     if (canvasRef.current) {
@@ -403,143 +366,23 @@ const Page = (props: Props) => {
         // effect.drawGrid(canvasCtx);
         // effect.drawGridAngles(canvasCtx);
 
-        // requestAnimationFrame(animate);
+        animationRef.current = requestAnimationFrame(animate);
       };
       animate();
 
-      return () => {};
+      return () => {
+        cancelAnimationFrame(animationRef.current!);
+      };
     }
   }, []);
-
-  // const MindStoneCoordinates = useMemo(() => {}, [window.innerWidth, window.innerHeight]);
-  // const SoulStoneCoordinates = useMemo(() => {}, [window.innerWidth, window.innerHeight]);
-  // const PowerStoneCoordinates = useMemo(() => {}, [window.innerWidth, window.innerHeight]);
-  // const SpaceStoneCoordinates = useMemo(() => {}, [window.innerWidth, window.innerHeight]);
-  // const RealityStoneCoordinates = useMemo(() => {}, [window.innerWidth, window.innerHeight]);
-  // const TimeStoneCoordinates = useMemo(() => {}, [window.innerWidth, window.innerHeight]);
-
-  // const stoneCoordinates = useMemo(() => {
-  //   const centerX = window.innerWidth / 2;
-  //   const centerY = window.innerHeight / 2;
-  // }, []);
-
-  const calcualtetoneCoordinates = (width: number, height: number) => {};
-
-  // useEffect(() => {
-  //   calcualtetoneCoordinates();
-  // }, []);
-
-  // for (let i = 0; i < this.islandsNumber; i++) {
-  //   this.islandsInfo.push({
-  //     x: this.center.x + this.islandPositionRadius * Math.cos(this.islandsAngle * (i + 1)),
-  //     y: this.center.y + this.islandPositionRadius * Math.sin(this.islandsAngle * (i + 1)),
-  //     radius: this.islandRadius,
-  //     color: particlesColor[i],
-  //     image: imageUrls[i],
-  //     label: labels[i],
-  //     imageX: this.center.x + this.islandPositionRadius * Math.cos(this.islandsAngle * (i + 1)),
-  //     imageY: this.center.y + this.islandPositionRadius * Math.sin(this.islandsAngle * (i + 1)),
-  //   });
-  // }
-
-  const [stoneCoordinates, setStoneCoordinates] = useState<{ [x: string]: { x: number; y: number } | null }>();
-
-  const stonesCoordinates = useEffect(() => {
-    const stoneRadius = islandRadius(window.innerWidth, window.innerHeight);
-    const stonePositionRadius = islandPositionRadius(window.innerWidth, window.innerHeight, stoneRadius);
-
-    // const x = stonePositionRadius * Math.cos(islandsAngle * (i + 1));
-    // const y = stonePositionRadius * Math.sin(islandsAngle * (i + 1));
-
-    setStoneCoordinates({
-      MindStone: { x: stonePositionRadius * Math.cos(islandsAngle), y: stonePositionRadius * Math.sin(islandsAngle * 1) },
-      SoulStone: { x: stonePositionRadius * Math.cos(2 * islandsAngle), y: stonePositionRadius * Math.sin(islandsAngle * 2) },
-      PowerStone: { x: stonePositionRadius * Math.cos(3 * islandsAngle), y: stonePositionRadius * Math.sin(islandsAngle * 3) },
-      TimeStone: { x: stonePositionRadius * Math.cos(4 * islandsAngle), y: stonePositionRadius * Math.sin(islandsAngle * 4) },
-      RealityStone: { x: stonePositionRadius * Math.cos(5 * islandsAngle), y: stonePositionRadius * Math.sin(islandsAngle * 5) },
-      SpaceStone: { x: stonePositionRadius * Math.cos(6 * islandsAngle), y: stonePositionRadius * Math.sin(islandsAngle * 6) },
-    });
-  }, []);
-
-  console.log(stoneCoordinates);
 
   return (
     <>
       <Flex position={"absolute"} top={0} left={0}>
-        <Image
-          src={MindStone}
-          alt="MindStone"
-          width={"auto"}
-          height={28}
-          style={{
-            position: "absolute",
-            top: "50%",
-            left: "50%",
-            transform: `translate(calc(-50% + ${stoneCoordinates?.MindStone?.x ?? 0}px),calc(-50% + ${stoneCoordinates?.MindStone?.y ?? 0}px))`,
-          }}
-        />
-        <Image
-          src={TimeStone}
-          alt="TimeStone"
-          width={"auto"}
-          height={28}
-          style={{
-            position: "absolute",
-            top: "50%",
-            left: "50%",
-            transform: `translate(calc(-50% + ${stoneCoordinates?.TimeStone?.x ?? 0}px),calc(-50% + ${stoneCoordinates?.TimeStone?.y ?? 0}px))`,
-          }}
-        />
-        <Image
-          src={SpaceStone}
-          alt="SpaceStone"
-          width={"auto"}
-          height={28}
-          style={{
-            position: "absolute",
-            top: "50%",
-            left: "50%",
-            transform: `translate(calc(-50% + ${stoneCoordinates?.SpaceStone?.x ?? 0}px),calc(-50% + ${stoneCoordinates?.SpaceStone?.y ?? 0}px))`,
-          }}
-        />
-        <Image
-          src={SoulStone}
-          alt="SoulStone"
-          width={"auto"}
-          height={28}
-          style={{
-            position: "absolute",
-            top: "50%",
-            left: "50%",
-            transform: `translate(calc(-50% + ${stoneCoordinates?.SoulStone?.x ?? 0}px),calc(-50% + ${stoneCoordinates?.SoulStone?.y ?? 0}px))`,
-          }}
-        />
-        <Image
-          src={PowerStone}
-          alt="PowerStone"
-          width={"auto"}
-          height={28}
-          style={{
-            position: "absolute",
-            top: "50%",
-            left: "50%",
-            transform: `translate(calc(-50% + ${stoneCoordinates?.PowerStone?.x ?? 0}px),calc(-50% + ${stoneCoordinates?.PowerStone?.y ?? 0}px))`,
-          }}
-        />
-        <Image
-          src={RealityStone}
-          alt="RealityStone"
-          width={"auto"}
-          height={28}
-          style={{
-            position: "absolute",
-            top: "50%",
-            left: "50%",
-            transform: `translate(calc(-50% + ${stoneCoordinates?.RealityStone?.x ?? 0}px),calc(-50% + ${stoneCoordinates?.RealityStone?.y ?? 0}px))`,
-          }}
-        />
-
         <canvas ref={canvasRef} className=""></canvas>
+        <Flex className="absolute top-1/2 left-1/2 -translate-x-[75px] -translate-y-[75px] shadow-[0_0_15px_5px_rgba(255,255,255,0.5)] rounded-full">
+          <RotatingText text="AIMAKOV·DEV·AIMAKOV·DEV·" onHover="speedUp" spinDuration={25} className=" " />
+        </Flex>
       </Flex>
     </>
   );

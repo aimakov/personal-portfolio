@@ -24,7 +24,7 @@ const DesktopHeader = ({ headerLinks }: Props) => {
       marginLeft={"auto"}
     >
       {headerLinks.map((headerLink: HeaderLink) => (
-        <Link href={headerLink.link}>
+        <Link href={headerLink.link} key={headerLink.link}>
           <Text color={brandColors.black}>{headerLink.label}</Text>
         </Link>
       ))}

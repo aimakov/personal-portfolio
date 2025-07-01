@@ -1,5 +1,6 @@
 export const brandColors = {
-  black: "#09090B",
+  black: "#0E0C0A",
+  lighterBlack: "#3D3D3C",
   white: "#FFFFFF",
 };
 
