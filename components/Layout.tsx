@@ -1,39 +1,35 @@
-import React, { ReactNode, useState } from "react";
-import { Flex } from "@chakra-ui/react";
+import React, { ReactNode } from 'react'
+import { Flex } from '@chakra-ui/react'
 
-import { brandColors } from "@/styles/theme";
-import SectionIslands from "./SectionIslands";
+import { Header, Footer } from '@/components'
 
 type Props = {
-  children?: ReactNode;
-};
+  children?: ReactNode
+}
 
 const Layout = ({ children }: Props) => {
-  const [accentColor, setAccentColor] = useState(brandColors.lighterBlack);
-
   return (
     <Flex
-      flexDirection={"column"}
-      height={"100dvh"}
-      paddingX={10}
-      paddingY={4}
-      style={{ transition: "all 300ms ease-in-out", boxShadow: `inset 0 0 20px 10px ${accentColor}` }}
-      bgColor={brandColors.lighterBlack}
+      zIndex={1}
+      w={'100%'}
+      minHeight={'100dvh'}
+      overflow={'auto'}
+      flexDirection={'column'}
+      bgGradient={`radial-gradient( circle farthest-corner at 0% 21.8%,  rgba(236,6,117,1) 0%, rgba(13,32,67,1) 90% );`}
     >
+      <Header />
       <Flex
-        position={"fixed"}
-        top={0}
-        bottom={0}
-        left={0}
-        right={0}
-        bgGradient={`radial-gradient(circle at center,  ${brandColors.black} ,transparent )`}
-        ring={"2px solid"}
-        ringColor={"red"}
-      ></Flex>
-      {children}
-      <SectionIslands setAccentColor={setAccentColor} />
+        flexDirection={'column'}
+        w={'100%'}
+        maxWidth={'1200px'}
+        mx={'auto'}
+        gap={10}
+      >
+        {children}
+      </Flex>
+      <Footer />
     </Flex>
-  );
-};
+  )
+}
 
-export default Layout;
+export default Layout

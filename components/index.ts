@@ -1,5 +1,5 @@
-import Layout from "./Layout";
-import Header from "./Header";
-import Whirlpool from "./Whirlpool";
+import Layout from './Layout'
+import Header from './Header'
+import Footer from './Footer'
 
-export { Layout, Header, Whirlpool };
+export { Layout, Header, Footer }

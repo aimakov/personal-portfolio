@@ -24,4 +24,8 @@ body {
   .text-balance {
     text-wrap: balance;
   }
+
+  .filter-white {
+    filter: brightness(0) saturate(100%) invert(100%);
+  }
 }

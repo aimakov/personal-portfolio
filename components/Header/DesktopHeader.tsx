@@ -1,35 +1,60 @@
-import React from "react";
-import { Flex, Text } from "@chakra-ui/react";
-import Link from "next/link";
+import React from 'react'
+import { Flex, Text } from '@chakra-ui/react'
+import Link from 'next/link'
 
-import { HeaderLink } from "@/utils/types";
-import { brandColors } from "@/styles/theme";
+import { HeaderLink } from '@/utils/types'
+import { brandColors } from '@/styles/theme'
+import { FadeContent } from '@/components/Bits'
 
 type Props = {
-  headerLinks: HeaderLink[];
-};
+  headerLinks: HeaderLink[]
+}
 
 const DesktopHeader = ({ headerLinks }: Props) => {
   return (
-    <Flex
-      marginY={1}
-      marginX={4}
-      justifyContent={"center"}
-      alignItems={"center"}
-      background={"rgba(255,255,255,0.5)"}
-      borderRadius={"3xl"}
-      paddingX={10}
-      gap={12}
-      paddingY={3}
-      marginLeft={"auto"}
+    <FadeContent
+      blur={true}
+      duration={1000}
+      easing="ease-out"
+      initialOpacity={0}
+      delay={2000}
+      className="z-[2] fixed w-full my-4"
     >
-      {headerLinks.map((headerLink: HeaderLink) => (
-        <Link href={headerLink.link} key={headerLink.link}>
-          <Text color={brandColors.black}>{headerLink.label}</Text>
-        </Link>
-      ))}
-    </Flex>
-  );
-};
+      <Flex
+        marginX={'auto'}
+        justifyContent={'center'}
+        alignItems={'center'}
+        borderRadius={'full'}
+        zIndex={1}
+        className="isolate w-96 rounded-xl bg-white/20 shadow-lg ring-1 ring-black/5"
+      >
+        {headerLinks.map((headerLink: HeaderLink, index: number) => (
+          <Flex
+            _hover={{
+              backgroundColor: brandColors.white,
+              opacity: 0.5,
+              color: brandColors.black,
+            }}
+            color={brandColors.white}
+            paddingX={4}
+            paddingY={4}
+            flex={1}
+            transition={'all 0.3s ease-in-out'}
+            height={'100%'}
+            justifyContent={'center'}
+            alignItems={'center'}
+            borderLeftRadius={index === 0 ? 'full' : 'none'}
+            borderRightRadius={
+              index === headerLinks.length - 1 ? 'full' : 'none'
+            }
+            cursor={'pointer'}
+          >
+            <Text>{headerLink.label}</Text>
+          </Flex>
+        ))}
+      </Flex>
+    </FadeContent>
+  )
+}
 
-export default DesktopHeader;
+export default DesktopHeader
