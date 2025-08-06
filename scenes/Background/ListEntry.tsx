@@ -64,7 +64,7 @@ const ListEntry = (props: BackgroundInfo & { isLast: boolean }) => {
             <AccordionItem border={'none'}>
               {({ isExpanded }) => (
                 <>
-                  <AccordionButton>
+                  <AccordionButton w={'fit-content'}>
                     <Text fontSize={'0.8rem'} fontWeight={'bold'}>
                       {isExpanded ? 'See Less' : 'See More'}
                     </Text>
