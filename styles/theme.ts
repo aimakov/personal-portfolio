@@ -1,3 +1,5 @@
+import { extendTheme } from '@chakra-ui/react'
+
 export const brandColors = {
   black: '#0E0C0A',
   lighterBlack: '#3D3D3C',
@@ -25,3 +27,30 @@ export const borderRadii = {
   xl: 14,
   xxl: 16,
 }
+
+// Create custom Chakra UI theme with default white text
+export const theme = extendTheme({
+  colors: {
+    brand: brandColors,
+  },
+  styles: {
+    global: {
+      body: {
+        color: brandColors.white,
+        bg: brandColors.black,
+      },
+    },
+  },
+  components: {
+    Text: {
+      baseStyle: {
+        color: brandColors.white,
+      },
+    },
+    Heading: {
+      baseStyle: {
+        color: brandColors.white,
+      },
+    },
+  },
+})

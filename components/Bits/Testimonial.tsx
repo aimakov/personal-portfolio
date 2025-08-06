@@ -1,5 +1,6 @@
 import React from 'react'
 import { Flex, Text } from '@chakra-ui/react'
+import { brandColors } from '@/styles/theme'
 
 type Props = {
   testimonial: string
@@ -14,7 +15,7 @@ export const Testimonial = ({ testimonial, title, task }: Props) => {
         {title}
       </Text>
 
-      <Text mb={4} textAlign={'center'} color="gray.400">
+      <Text mb={4} textAlign={'center'} color={brandColors.lightGray}>
         Task: {task}
       </Text>
       <Text

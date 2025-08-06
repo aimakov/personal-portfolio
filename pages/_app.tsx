@@ -2,6 +2,7 @@ import '@/styles/globals.css'
 import type { AppProps } from 'next/app'
 import { Box, ChakraProvider } from '@chakra-ui/react'
 import { Raleway } from 'next/font/google'
+import { theme } from '@/styles/theme'
 
 const raleway = Raleway({
   subsets: ['latin'],
@@ -10,7 +11,7 @@ const raleway = Raleway({
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
-    <ChakraProvider>
+    <ChakraProvider theme={theme}>
       <Box className={raleway.className}>
         <Component {...pageProps} />
       </Box>

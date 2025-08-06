@@ -94,6 +94,7 @@ const DesktopHeader = ({ headerLinks }: Props) => {
               display={['none', 'block']}
               userSelect={'none'}
               fontSize={['0.8rem', '1rem']}
+              color={isScrolled ? brandColors.black : brandColors.white}
             >
               {headerLink.label}
             </Text>

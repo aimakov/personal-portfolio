@@ -1,6 +1,7 @@
 import React from 'react'
 import { Flex, Text, Box } from '@chakra-ui/react'
 import Image from 'next/image'
+import { brandColors } from '@/styles/theme'
 
 type Props = {
   imgUrl: string
@@ -60,7 +61,11 @@ const SkillBadge = ({ imgUrl, name, description, invert }: Props) => {
         >
           {name}
         </Text>
-        <Text color="gray.400" fontSize="0.8rem" fontWeight="normal">
+        <Text
+          color={brandColors.lightGray}
+          fontSize="0.8rem"
+          fontWeight="normal"
+        >
           {description}
         </Text>
       </Flex>

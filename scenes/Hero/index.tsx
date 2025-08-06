@@ -1,7 +1,8 @@
 import React from 'react'
-import { Button, Flex, Text } from '@chakra-ui/react'
+import { Button, Flex, Text, Box, Badge } from '@chakra-ui/react'
 import { FaArrowRight } from 'react-icons/fa'
 import { FaSquareUpwork } from 'react-icons/fa6'
+import { FaStar } from 'react-icons/fa'
 
 import { BlurText, FadeContent } from '@/components/Bits'
 import { brandColors } from '@/styles/theme'
@@ -26,7 +27,7 @@ const Hero = (props: Props) => {
         stepDuration={0.8}
         animateBy="letters"
         direction="top"
-        className="font-bold text-[1rem] max-sm:mb-4"
+        className={`font-bold text-[1rem] max-sm:mb-4 text-[${brandColors.white}]`}
       />
 
       <BlurText
@@ -58,6 +59,7 @@ const Hero = (props: Props) => {
           fontWeight={'hairline'}
           fontSize={['1rem', '1.2rem']}
           textAlign={['center', 'left']}
+          color={brandColors.white}
         >
           Hi, I'm Nurbolat, I create intuitive, visually stunning and highly
           functional web & mobile applications.
@@ -79,11 +81,48 @@ const Hero = (props: Props) => {
         >
           Hire me on <FaSquareUpwork size={24} className="ml-2" />
         </Button>
+
+        <Box
+          mt={3}
+          display="flex"
+          flexDirection={'column'}
+          gap={2}
+          flexWrap="wrap"
+          justifyContent="center"
+        >
+          <Badge
+            bg={brandColors.teal1}
+            color={brandColors.white}
+            px={3}
+            py={1}
+            borderRadius="full"
+            fontSize="0.65rem"
+            fontWeight="bold"
+            display="flex"
+            alignItems="center"
+            gap={1}
+          >
+            <FaStar size={12} />
+            Top rated plus
+          </Badge>
+          <Badge
+            bg={brandColors.green}
+            color={brandColors.white}
+            px={3}
+            py={1}
+            borderRadius="full"
+            fontSize="0.65rem"
+            fontWeight="bold"
+          >
+            100% job success
+          </Badge>
+        </Box>
         <Button
           w={'fit-content'}
-          mt={2}
+          mt={8}
           variant={'outline'}
           onClick={e => handleLinkClick(e, 'projects')}
+          color={brandColors.white}
         >
           See my work <FaArrowRight size={12} className="ml-2" />
         </Button>

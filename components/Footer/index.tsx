@@ -5,6 +5,11 @@ import Image from 'next/image'
 import { socialIcons } from '@/assets'
 
 const Footer = () => {
+  const handleLinkClick = (e: React.MouseEvent, link: string) => {
+    e.preventDefault()
+    window.open(link, '_blank')
+  }
+
   return (
     <Flex
       w={'100%'}
@@ -28,21 +33,26 @@ const Footer = () => {
           alt="LinkedIn"
           width={20}
           height={20}
-          className={`invert`}
+          className={`invert cursor-pointer`}
+          onClick={e =>
+            handleLinkClick(e, 'https://www.linkedin.com/in/aimakov/')
+          }
         />
         <Image
           src={socialIcons.github}
           alt="GitHub"
           width={20}
           height={20}
-          className={`invert`}
+          className={`invert cursor-pointer`}
+          onClick={e => handleLinkClick(e, 'https://github.com/aimakov')}
         />
         <Image
           src={socialIcons.mail}
           alt="Mail"
           width={20}
           height={20}
-          className={`invert`}
+          className={`invert cursor-pointer`}
+          onClick={e => handleLinkClick(e, 'mailto:aimakov.dev@gmail.com')}
         />
       </Flex>
     </Flex>

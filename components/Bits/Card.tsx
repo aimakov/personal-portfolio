@@ -39,7 +39,7 @@ export default function ProductSimple({
         rounded={'lg'}
         pos={'relative'}
         zIndex={1}
-        bg={'white'}
+        bg={brandColors.white}
       >
         <Box
           rounded={'lg'}
