@@ -6,6 +6,9 @@ export const brandColors = {
   teal2: '#3DCCCC',
   lightGray: '#d4d4d4',
   darkGray: '#949494',
+  pinkBg: 'rgba(236,6,117,1)',
+  purpleBg: 'rgba(13,32,67,1)',
+  green: '#008000',
 }
 
 export const themeColors = {

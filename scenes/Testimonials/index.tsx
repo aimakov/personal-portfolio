@@ -10,7 +10,7 @@ type Props = {}
 
 const Testimonials = (props: Props) => {
   return (
-    <Flex flexDirection={'column'} gap={4}>
+    <Flex flexDirection={'column'} gap={4} id="testimonials" p={2}>
       <Flex mx={'auto'} gap={10}>
         {new Array(5).fill(0).map((_, index) => (
           <Image
@@ -24,7 +24,7 @@ const Testimonials = (props: Props) => {
       </Flex>
 
       <Grid
-        templateColumns="repeat(auto-fill, minmax(400px, 1fr))"
+        templateColumns="repeat(auto-fill, minmax(350px, 1fr))"
         gap={10}
         my={12}
       >

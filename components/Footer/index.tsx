@@ -15,6 +15,8 @@ const Footer = (props: Props) => {
       justifyContent={'space-between'}
       alignItems={'center'}
       py={10}
+      px={2}
+      mb={[10, 0]}
     >
       <Flex gap={1} fontSize={'sm'}>
         <Text mt={'1px'}>©</Text>

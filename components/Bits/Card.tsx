@@ -1,11 +1,26 @@
-import { Box, Center, Heading, Text, Stack, Image } from '@chakra-ui/react'
-import { StaticImageData } from 'next/image'
+import {
+  Box,
+  Center,
+  Heading,
+  Text,
+  Stack,
+  Image,
+  Button,
+  Flex,
+} from '@chakra-ui/react'
+import NextImage, { StaticImageData } from 'next/image'
+import Link from 'next/link'
+
+import { socialIcons, gradientIcons } from '@/assets'
+import { brandColors } from '@/styles/theme'
 
 interface Props {
   image: string | StaticImageData
   title: string
   description: string
   tags: string[]
+  github: string
+  link: string
 }
 
 const IMAGE =
@@ -16,6 +31,8 @@ export default function ProductSimple({
   title,
   description,
   tags,
+  github,
+  link,
 }: Props) {
   return (
     <Center py={12}>
@@ -75,6 +92,15 @@ export default function ProductSimple({
           <Stack direction={'row'} align={'center'}>
             <Text color={'gray.600'}>{description}</Text>
           </Stack>
+
+          <Flex gap={6} mt={2} w={'full'} justifyContent={'flex-end'}>
+            <a target="_blank" href={github}>
+              <Text color={brandColors.darkGray}>Github Repo</Text>
+            </a>
+            <a target="_blank" href={link}>
+              <Text color={brandColors.darkGray}>Try me</Text>
+            </a>
+          </Flex>
         </Stack>
       </Box>
     </Center>

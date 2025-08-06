@@ -25,6 +25,8 @@ import github from './Icons/github.svg'
 import mail from './Icons/mail.svg'
 import star from './Icons/star.svg'
 
+import gradientGithub from './Icons/GradientIcons/github.svg'
+
 export const skillIcons = {
   figma,
   react,
@@ -75,3 +77,5 @@ export const socialIcons = {
 export const icons = {
   star,
 }
+
+export const gradientIcons = { gradientGithub }

@@ -8,11 +8,11 @@ type Props = {}
 
 const AboutMe = (props: Props) => {
   return (
-    <Flex w="100%" flexDirection={'column'} mx={'auto'} px={2}>
-      <Text fontSize={'2.5rem'} fontWeight={'bold'}>
+    <Flex w="100%" flexDirection={'column'} mx={'auto'} p={2} id="about">
+      <Text fontSize={['2rem', '2.5rem']} fontWeight={'bold'}>
         Current technologies
       </Text>
-      <Text fontWeight={'light'} w={'80%'}>
+      <Text fontWeight={'light'}>
         I'm proficient in a range of modern technologies that empower me to
         build highly functional solutions. These are some of my main
         technologies.

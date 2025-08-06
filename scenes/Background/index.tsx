@@ -8,16 +8,22 @@ import {
   TabPanels,
   TabIndicator,
   TabPanel,
+  Accordion,
+  AccordionItem,
+  AccordionButton,
+  AccordionPanel,
+  AccordionIcon,
 } from '@chakra-ui/react'
 import { brandColors } from '@/styles/theme'
 
 import { backgroundInfo } from './BackgroundInfo'
 import ListEntry from './ListEntry'
+import { maxItemsForExperienceList } from '@/settings/constants'
 
 const Experience = () => {
   return (
-    <Flex flexDirection={'column'} gap={4}>
-      <Text fontSize={'2.5rem'} fontWeight={'bold'}>
+    <Flex flexDirection={'column'} gap={4} id="experience" p={2}>
+      <Text fontSize={['2rem', '2.5rem']} fontWeight={'bold'}>
         Background
       </Text>
       <Tabs position="relative" variant="unstyled">

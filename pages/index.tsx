@@ -12,12 +12,20 @@ import {
 export default function Home() {
   return (
     <Layout>
-      <HeroScene />
-      <AboutMeScene />
+      <div id="home">
+        <HeroScene />
+      </div>
+      <div id="about">
+        <AboutMeScene />
+      </div>
       <Divider />
-      <ExperienceScene />
+      <div id="experience">
+        <ExperienceScene />
+      </div>
       <Divider />
-      <ProjectsScene />
+      <div id="projects">
+        <ProjectsScene />
+      </div>
       <Divider />
       <TestimonialsScene />
     </Layout>

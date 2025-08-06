@@ -1,9 +1,21 @@
 import React from 'react'
-import { Box, Flex, Text, UnorderedList, ListItem } from '@chakra-ui/react'
+import {
+  Box,
+  Flex,
+  Text,
+  UnorderedList,
+  ListItem,
+  Accordion,
+  AccordionItem,
+  AccordionButton,
+  AccordionPanel,
+  AccordionIcon,
+} from '@chakra-ui/react'
 import Image from 'next/image'
 
 import { BackgroundInfo } from '@/types/Background'
 import { brandColors } from '@/styles/theme'
+import { maxItemsForExperienceList } from '@/settings/constants'
 
 const ListEntry = (props: BackgroundInfo & { isLast: boolean }) => {
   return (
@@ -37,11 +49,47 @@ const ListEntry = (props: BackgroundInfo & { isLast: boolean }) => {
           {props.title}
         </Text>
 
-        <UnorderedList mt={1} fontSize={'0.9rem'}>
-          {props.description.map(desc => (
+        <UnorderedList
+          mt={1}
+          fontSize={['0.8rem', '0.9rem']}
+          fontWeight={'normal'}
+          maxW={['100%', '80%']}
+        >
+          {props.description.slice(0, maxItemsForExperienceList).map(desc => (
             <ListItem key={desc}>{desc}</ListItem>
           ))}
         </UnorderedList>
+        {props.description.length > maxItemsForExperienceList && (
+          <Accordion allowMultiple>
+            <AccordionItem border={'none'}>
+              {({ isExpanded }) => (
+                <>
+                  <AccordionButton>
+                    <Text fontSize={'0.8rem'} fontWeight={'bold'}>
+                      {isExpanded ? 'See Less' : 'See More'}
+                    </Text>
+                  </AccordionButton>
+                  <AccordionPanel p={0}>
+                    <UnorderedList
+                      mt={1}
+                      fontSize={['0.8rem', '0.9rem']}
+                      maxW={['100%', '80%']}
+                    >
+                      {props.description
+                        .slice(
+                          maxItemsForExperienceList,
+                          props.description.length,
+                        )
+                        .map(desc => (
+                          <ListItem key={desc}>{desc}</ListItem>
+                        ))}
+                    </UnorderedList>
+                  </AccordionPanel>
+                </>
+              )}
+            </AccordionItem>
+          </Accordion>
+        )}
       </Flex>
     </Flex>
   )

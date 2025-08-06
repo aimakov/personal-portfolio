@@ -2,6 +2,7 @@ import React, { ReactNode } from 'react'
 import { Flex } from '@chakra-ui/react'
 
 import { Header, Footer } from '@/components'
+import { brandColors } from '@/styles/theme'
 
 type Props = {
   children?: ReactNode
@@ -15,7 +16,7 @@ const Layout = ({ children }: Props) => {
       minHeight={'100dvh'}
       overflow={'auto'}
       flexDirection={'column'}
-      bgGradient={`radial-gradient( circle farthest-corner at 0% 21.8%,  rgba(236,6,117,1) 0%, rgba(13,32,67,1) 90% );`}
+      bgGradient={`radial-gradient( circle farthest-corner at 0% 21.8%,  ${brandColors.pinkBg} 0%, ${brandColors.purpleBg} 90% );`}
     >
       <Header />
       <Flex
