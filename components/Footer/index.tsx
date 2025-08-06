@@ -4,9 +4,7 @@ import Image from 'next/image'
 
 import { socialIcons } from '@/assets'
 
-type Props = {}
-
-const Footer = (props: Props) => {
+const Footer = () => {
   return (
     <Flex
       w={'100%'}

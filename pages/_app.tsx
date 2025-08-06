@@ -1,13 +1,7 @@
 import '@/styles/globals.css'
 import type { AppProps } from 'next/app'
 import { Box, ChakraProvider } from '@chakra-ui/react'
-import localFont from 'next/font/local'
 import { Raleway } from 'next/font/google'
-
-const satoshi = localFont({
-  src: './fonts/Satoshi-Variable.woff2',
-  display: 'fallback',
-})
 
 const raleway = Raleway({
   subsets: ['latin'],

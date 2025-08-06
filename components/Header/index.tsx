@@ -1,16 +1,8 @@
 import React from 'react'
-import {
-  FaHome,
-  FaRegUser,
-  FaSuitcase,
-  FaLightbulb,
-  FaStar,
-} from 'react-icons/fa'
+import { FaHome, FaSuitcase, FaLightbulb, FaStar } from 'react-icons/fa'
 import { BsNutFill } from 'react-icons/bs'
 
 import DesktopHeader from './DesktopHeader'
-
-type Props = {}
 
 const headerLinks = [
   {
@@ -40,7 +32,7 @@ const headerLinks = [
   },
 ]
 
-const Header = (props: Props) => {
+const Header = () => {
   return <DesktopHeader headerLinks={headerLinks} />
 }
 

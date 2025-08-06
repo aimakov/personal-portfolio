@@ -23,7 +23,7 @@ export const Testimonial = ({ testimonial, title, task }: Props) => {
         textAlign={'center'}
         fontStyle={'italic'}
       >
-        "{testimonial}"
+        &quot;{testimonial}&quot;
       </Text>
     </Flex>
   )

@@ -110,7 +110,7 @@ const BlurText: React.FC<BlurTextProps> = ({
           times,
           delay: initialDelay + (index * delay) / 1000,
         }
-        ;(spanTransition as any).ease = easing
+        ;(spanTransition as { ease: (t: number) => number }).ease = easing
 
         return (
           <motion.span

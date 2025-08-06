@@ -5,13 +5,10 @@ import {
   Text,
   Stack,
   Image,
-  Button,
   Flex,
 } from '@chakra-ui/react'
-import NextImage, { StaticImageData } from 'next/image'
-import Link from 'next/link'
+import { StaticImageData } from 'next/image'
 
-import { socialIcons, gradientIcons } from '@/assets'
 import { brandColors } from '@/styles/theme'
 
 interface Props {
@@ -22,9 +19,6 @@ interface Props {
   github: string
   link: string
 }
-
-const IMAGE =
-  'https://images.unsplash.com/photo-1518051870910-a46e30d9db16?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1350&q=80'
 
 export default function ProductSimple({
   image,
