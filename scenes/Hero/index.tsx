@@ -1,16 +1,20 @@
 import React from 'react'
 import { Button, Flex, Text, Box, Badge } from '@chakra-ui/react'
 import { FaArrowRight } from 'react-icons/fa'
-import { FaSquareUpwork } from 'react-icons/fa6'
+import {
+  FaSquareUpwork,
+  FaGithub,
+  FaLinkedin,
+  FaEnvelope,
+} from 'react-icons/fa6'
 import { FaStar } from 'react-icons/fa'
 
 import { BlurText, FadeContent } from '@/components/Bits'
 import { brandColors } from '@/styles/theme'
 import { handleLinkClick } from '@/components/Header/DesktopHeader'
+import { handleLinkClick as handleSocialLinkClick } from '@/utils/helpers'
 
-type Props = {}
-
-const Hero = (props: Props) => {
+const Hero = () => {
   return (
     <Flex
       h={'100dvh'}
@@ -96,11 +100,13 @@ const Hero = (props: Props) => {
             px={3}
             py={1}
             borderRadius="full"
-            fontSize="0.65rem"
+            fontSize="0.6rem"
             fontWeight="bold"
             display="flex"
             alignItems="center"
             gap={1}
+            w={'fit-content'}
+            mx={'auto'}
           >
             <FaStar size={12} />
             Top rated plus
@@ -111,11 +117,45 @@ const Hero = (props: Props) => {
             px={3}
             py={1}
             borderRadius="full"
-            fontSize="0.65rem"
+            fontSize="0.6rem"
             fontWeight="bold"
+            w={'fit-content'}
+            mx={'auto'}
           >
             100% job success
           </Badge>
+
+          <Text mx={'auto'} my={2}>
+            or
+          </Text>
+
+          <Flex gap={3}>
+            <Text>Contact me on</Text>
+
+            <FaGithub
+              size={20}
+              className="ml-2 cursor-pointer"
+              onClick={e =>
+                handleSocialLinkClick(e, 'https://github.com/aimakov')
+              }
+            />
+
+            <FaLinkedin
+              size={20}
+              className="ml-2 cursor-pointer"
+              onClick={e =>
+                handleSocialLinkClick(e, 'https://www.linkedin.com/in/aimakov/')
+              }
+            />
+
+            <FaEnvelope
+              size={20}
+              className="ml-2 cursor-pointer"
+              onClick={e =>
+                handleSocialLinkClick(e, 'mailto:aimakov.dev@gmail.com')
+              }
+            />
+          </Flex>
         </Box>
         <Button
           w={'fit-content'}

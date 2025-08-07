@@ -68,7 +68,7 @@ export const backgroundInfo: {
       imgUrl: backgroundIcons.unist,
     },
     {
-      title: 'Combined MS-PhD in Biomedical Engineering',
+      title: 'B.E. in Electrical and Electronic Engineering',
       institution: 'Nazarbayev University',
       dates: 'Aug 2012 - June 2017',
       description: [
